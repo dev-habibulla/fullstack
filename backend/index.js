@@ -3,8 +3,10 @@ const express = require("express")
 var cors = require("cors");
 const app = express()
 const secureApi = require("./middleware/secureApi")
-const routes=require("./routes")
+const routes = require("./routes")
+const mongoConfig = require("./config/mongoConfig")
 
+mongoConfig()
 app.use(cors())
 app.use(express.json());
 app.use(routes)
