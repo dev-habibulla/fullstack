@@ -20,13 +20,15 @@ let loginControler = async (req, res) => {
         // } else {
         //     res.send({ error: "otp not match" });
         // }
-
         bcrypt.compare(password, findEmail.password, function (err, result) {
             console.log(result);
             // result == true
             if (result) {
                 res.send({
-                    success: "Login SuccessFul",
+                    username: findEmail.username,
+                    email: findEmail.email,
+                    role: findEmail.role,
+                    isEmailVerified: findEmail.isEmailVerified,
                 });
             } else {
                 res.send({
@@ -35,6 +37,10 @@ let loginControler = async (req, res) => {
             }
         });
 
+    } else {
+        res.send({
+            error: "Credential Invalid",
+        });
     }
 };
 

@@ -1,6 +1,6 @@
-import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import axios from "axios";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -8,39 +8,44 @@ export const Login = () => {
   const onFinish = async (values) => {
     console.log("Success:", values);
 
-      let data = await axios.post("http://localhost:8000/api/v1/auth/login", {
-        email: values.email,
-        password:values.password,
-        // email: "habibullalm3@gmail.com",
-        // password: "123456789",
-      },
-      {
-        headers: {
-          authorization: "bhchfghFg5gjnggjg",
+    try {
+      let data = await axios.post(
+        "http://localhost:8000/api/v1/auth/login",
+        {
+          email: values.email,
+          password: values.password,
+          // email: "habibullalm3@gmail.com",
+          // password: "123456789",
         },
+
+        {
+          headers: {
+            authorization: "bhchfghFg5gjnggjg",
+          },
+        }
+      );
+
+      if (!data.data.isEmailVarified) {
+        console.log("Please Varify your email");
+      } else if (data.data.role == "user") {
+        console.log("You do  not have permission to enter");
+      } else {
+        localStorage.setItem("user", JSON.stringify(data.data));
+      //  diapatch(activeUser(data.data));
+       // navigate("/home");
       }
-      
-      )
-     
 
-    // try {
-    //   let data = await axios.post("http://localhost:8000/api/v1/auth/login", {
-    //     email: "shawon.cit.bd@gmail.com",
-    //     password: "123456789",
-    //   });
+      // if (!data.data.error) {
+      //   // navigate("/home")
+      //   console.log(data.data);
+      // } else {
+      //   console.log("ami error");
+      // }
 
-    //   if (!data.data.isEmailVarified) {
-    //     console.log("Please Varify your email");
-    //   } else if (data.data.role == "user") {
-    //     console.log("You do  not have permission to enter");
-    //   } else {
-    //     localStorage.setItem("user", JSON.stringify(data.data));
-    //     diapatch(activeUser(data.data));
-    //     navigate("/home");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
+    } catch (error) {
+      console.log("Error:", error.response.data);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
