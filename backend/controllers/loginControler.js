@@ -25,6 +25,7 @@ let loginControler = async (req, res) => {
             // result == true
             if (result) {
                 res.send({
+                    id: findEmail._id,
                     username: findEmail.username,
                     email: findEmail.email,
                     role: findEmail.role,

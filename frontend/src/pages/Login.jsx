@@ -2,9 +2,13 @@ import { Button, Form, Input } from "antd";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { activeUser } from "../slices/userSlice";
+import { useDispatch } from "react-redux";
 
 export const Login = () => {
   let navigate = useNavigate();
+  let diapatch = useDispatch();
+
   const onFinish = async (values) => {
     console.log("Success:", values);
 
@@ -25,24 +29,21 @@ export const Login = () => {
         }
       );
 
-      if (!data.data.isEmailVarified) {
-        console.log("Please Varify your email");
-      } else if (data.data.role == "user") {
-        console.log("You do  not have permission to enter");
+      if (!data.data.error) {
+        console.log(data.data);
+        if (!data.data.isEmailVerified) {
+          console.log("Please Varify your email");
+        } else if (data.data.role == "user") {
+          console.log("You do  not have permission to enter");
+        } else {
+          console.log("ami Done");
+          localStorage.setItem("user", JSON.stringify(data.data));
+          diapatch(activeUser(data.data));
+          navigate("/dashboard");
+        }
       } else {
-        localStorage.setItem("user", JSON.stringify(data.data));
-      //  diapatch(activeUser(data.data));
-       // navigate("/home");
+        console.log("email or pass vul");
       }
-
-      // if (!data.data.error) {
-      //   // navigate("/home")
-      //   console.log(data.data);
-      // } else {
-      //   console.log("ami error");
-      // }
-
-
     } catch (error) {
       console.log("Error:", error.response.data);
     }
@@ -75,7 +76,7 @@ export const Login = () => {
         rules={[
           {
             required: true,
-            message: "Please input your email!",
+            message: "Please input your Email!",
           },
         ]}
       >
@@ -88,7 +89,7 @@ export const Login = () => {
         rules={[
           {
             required: true,
-            message: "Please input your password!",
+            message: "Please input your Password!",
           },
         ]}
       >
