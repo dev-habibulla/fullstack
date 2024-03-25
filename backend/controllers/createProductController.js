@@ -1,11 +1,14 @@
+const Product = require("../model/productModel");
 
+const createProductController = async (req, res) => {
+  const { name, description, image } = req.body;
 
-let createProductController = async (req, res) => {
-  // const { token, password } = req.body;
-
-console.log("createProductController");
-   
-
+  const product = new Product({
+    name: name,
+    description: description,
+    image: image,
+  });
+  product.save();
 };
 
 module.exports = createProductController;
