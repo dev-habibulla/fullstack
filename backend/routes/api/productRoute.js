@@ -1,19 +1,31 @@
-const express = require("express")
-const createCategoryControlar = require("../../controllers/createCategoryControlar")
-const createSubCategoryControlar = require("../../controllers/createSubCategoryControlar")
-const allCatControlar = require("../../controllers/allCatControlar")
-const allSubCatControlar = require("../../controllers/allSubCatControlar")
-const createProductController = require("../../controllers/createProductController")
+const express = require("express");
+const multer = require("multer");
+const createCategoryControlar = require("../../controllers/createCategoryControlar");
+const createSubCategoryControlar = require("../../controllers/createSubCategoryControlar");
+const allCatControlar = require("../../controllers/allCatControlar");
+const allSubCatControlar = require("../../controllers/allSubCatControlar");
+const createProductController = require("../../controllers/createProductController");
 
-const _ = express.Router()
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + "-" + file.originalname);
+    console.log(file);
+  },
+});
 
-_.post("/createcategory", createCategoryControlar)
-_.post("/createsubcategory", createSubCategoryControlar)
-_.post("/createproduct", createProductController)
+const upload = multer({ storage: storage });
 
-_.get("/allcat", allCatControlar)
-_.get("/allsubcat", allSubCatControlar)
+const _ = express.Router();
 
+_.post("/createcategory", createCategoryControlar);
+_.post("/createsubcategory", createSubCategoryControlar);
+_.post("/createproduct", upload.single("avatar"), createProductController);
 
+_.get("/allcat", allCatControlar);
+_.get("/allsubcat", allSubCatControlar);
 
-module.exports = _
+module.exports = _;

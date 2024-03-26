@@ -1,16 +1,36 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Button, Form, Input } from "antd";
+import axios from "axios";
 import React, { useState } from "react";
 
 const AddProduct = () => {
-  let [describsion, setDescribsion] = useState("");
+  let [description, setDescription] = useState("");
+  let [image, setImage] = useState({});
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log("Success:", values);
+
+    await axios.post(
+      "http://localhost:8000/api/v1/product/createproduct",
+      {
+        name: values.product,
+        description: description,
+        avatar: image,
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+  };
+
+  let handleChange = (e) => {
+    setImage(e.target.files[0]);
   };
 
   return (
@@ -48,14 +68,14 @@ const AddProduct = () => {
 
         <CKEditor
           editor={ClassicEditor}
-          data="<p>Hello from CKEditor&nbsp;5!</p>"
+          data=""
           onReady={(editor) => {
             // You can store the "editor" and use when it is needed.
             console.log("Editor is ready to use!", editor);
           }}
           onChange={(event, editor) => {
             console.log("Describsion", editor.getData());
-            setDescribsion(editor.getData());
+            setDescription(editor.getData());
           }}
           onBlur={(event, editor) => {
             console.log("Blur.", editor);
@@ -64,10 +84,10 @@ const AddProduct = () => {
             console.log("Focus.", editor);
           }}
         />
-
+        {/* <input onChange={handleChange} type="file" /> */}
         <Form.Item
           label="Product Image"
-          name="image"
+          name="images"
           rules={[
             {
               required: true,
@@ -75,7 +95,7 @@ const AddProduct = () => {
             },
           ]}
         >
-          <Input type="file" />
+          <Input onChange={handleChange} type="file" />
         </Form.Item>
 
         <Form.Item
