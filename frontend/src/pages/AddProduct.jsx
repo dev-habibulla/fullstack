@@ -1,4 +1,5 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import slugify from "react-slugify";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Button, Form, Input } from "antd";
 import axios from "axios";
@@ -7,6 +8,7 @@ import React, { useState } from "react";
 const AddProduct = () => {
   let [description, setDescription] = useState("");
   let [image, setImage] = useState({});
+  let [slugText, setSlugText] = useState("");
 
   const onFinish = async (values) => {
     console.log("Success:", values);
@@ -17,6 +19,9 @@ const AddProduct = () => {
         name: values.product,
         description: description,
         avatar: image,
+        regularprice:values.regularprice,
+        saleprice:values.saleprice,
+        slug:slugText
       },
       {
         headers: {
@@ -63,7 +68,7 @@ const AddProduct = () => {
             },
           ]}
         >
-          <Input />
+          <Input onChange={(e) => setSlugText(e.target.value)} />
         </Form.Item>
 
         <CKEditor
@@ -97,6 +102,35 @@ const AddProduct = () => {
         >
           <Input onChange={handleChange} type="file" />
         </Form.Item>
+
+        <Form.Item
+          label="Regular Price"
+          name="regularprice"
+          rules={[
+            {
+              required: true,
+              message: "Please input yourRegular Price!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Sale Price"
+          name="saleprice"
+          rules={[
+            {
+              required: true,
+              message: "Please input yourRegular Sale!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <span>Slug</span>
+        <input style={{width:"100%"}} defaultValue={slugify(slugText)} disabled />
 
         <Form.Item
           wrapperCol={{

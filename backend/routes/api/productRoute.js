@@ -5,6 +5,7 @@ const createSubCategoryControlar = require("../../controllers/createSubCategoryC
 const allCatControlar = require("../../controllers/allCatControlar");
 const allSubCatControlar = require("../../controllers/allSubCatControlar");
 const createProductController = require("../../controllers/createProductController");
+const allProductContoller = require("../../controllers/allProductContoller");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -27,5 +28,6 @@ _.post("/createproduct", upload.single("avatar"), createProductController);
 
 _.get("/allcat", allCatControlar);
 _.get("/allsubcat", allSubCatControlar);
+_.get("/allproduct", allProductContoller);
 
 module.exports = _;

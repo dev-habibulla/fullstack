@@ -1,7 +1,7 @@
 const Product = require("../model/productModel");
 
 const createProductController = async (req, res) => {
-  const { name, description, image } = req.body;
+  const { name, description, image,regularprice,saleprice,slug } = req.body;
 
   let existingName = await Product.findOne({ name: name })
 
@@ -13,6 +13,9 @@ const createProductController = async (req, res) => {
       name: name,
       description: description,
       avatar: `/uploads/${req.file.filename}`,
+      regularprice:regularprice,
+      saleprice:saleprice,
+      slug:slug
     });
     product.save();
   }
