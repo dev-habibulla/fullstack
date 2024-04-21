@@ -50,6 +50,8 @@ const Home = () => {
       getItem("Add Subcategore", "/dashboard/createsubcat"),
       getItem("View Category", "/dashboard/viewcat"),
       getItem("View Subcategore", "/dashboard/viewsubcat"),
+      getItem("Add Variant", "/dashboard/addvariant"),
+      getItem("View Variant", "/dashboard/viewvariant"),
     ]),
     {
       type: "divider",
