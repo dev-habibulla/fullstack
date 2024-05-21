@@ -5,7 +5,7 @@ const catSchema = new Schema({
     name: {
         type: String,
         require: true,
-        unique : true,
+        unique: true,
     },
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +16,11 @@ const catSchema = new Schema({
         type: String,
         enum: ["waiting", "rejected", "approved"],
         default: "waiting",
-    }
+    },
+    subcatList: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Subcategory",
+    }],
 
 })
 

@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 const SubCategory = () => {
   let userInfo = useSelector((state) => state.currentUser.value.id);
 
-  // console.log(userInfo);
-
   let [catList, setCatList] = useState([]);
   let [catid, setcatid] = useState("");
 
