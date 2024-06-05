@@ -10,7 +10,6 @@ async function getData(id) {
   }
 
 
-
 const CatDetails = async ({params}) => {
 
     const data = await getData(params.slug)

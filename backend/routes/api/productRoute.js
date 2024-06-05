@@ -8,6 +8,8 @@ const createProductController = require("../../controllers/createProductControll
 const allProductContoller = require("../../controllers/allProductContoller");
 const createVariantController = require("../../controllers/createVariantController");
 const singleCategoryContoller = require("../../controllers/singleCategory");
+const cartControlar = require("../../controllers/cartController");
+const allCartContoller = require("../../controllers/allcart");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -28,10 +30,12 @@ _.post("/createcategory", createCategoryControlar);
 _.post("/createsubcategory", createSubCategoryControlar);
 _.post("/createproduct", upload.single("avatar"), createProductController);
 _.post("/createvariant", upload.single("avatar"), createVariantController);
+_.post("/createcart",  cartControlar);
 
 _.get("/allcat", allCatControlar);
 _.get("/allsubcat", allSubCatControlar);
 _.get("/allproduct", allProductContoller);
 _.get("/singlecategory", singleCategoryContoller);
+_.get("/allcart", allCartContoller);
 
 module.exports = _;
