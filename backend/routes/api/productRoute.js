@@ -28,7 +28,8 @@ const _ = express.Router();
 
 _.post("/createcategory", createCategoryControlar);
 _.post("/createsubcategory", createSubCategoryControlar);
-_.post("/createproduct", upload.single("avatar"), createProductController);
+_.post("/createproduct", upload.array('photos', 12), createProductController);
+// _.post("/createproduct", upload.single("avatar"), createProductController);
 _.post("/createvariant", upload.single("avatar"), createVariantController);
 _.post("/createcart",  cartControlar);
 

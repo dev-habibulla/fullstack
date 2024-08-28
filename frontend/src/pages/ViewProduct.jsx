@@ -21,7 +21,7 @@ const ViewProduct = () => {
           name: item.name,
           regularprice: item.regularprice,
           saleprice: item.saleprice,
-          image: item.avatar,
+          image: item.image,
         });
       });
       setProductList(arr);

@@ -1,6 +1,8 @@
 "use client"
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Link from 'next/link'
+
 
 const SingleProduct = ({ item }) => {
 
@@ -26,10 +28,12 @@ console.log(content);
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={`http://localhost:8000${item.avatar}`} />
+      <Card.Img variant="top" src={`http://localhost:8000${item.image[0]}`} />
       <Card.Body>
       {item._id}
         <Card.Title>{item.name}</Card.Title>
+       
+        <Link href={`/product/${item.slug}`}>{JSON.stringify(item.name.split(" ").join("-"))}</Link>
         <Card.Text dangerouslySetInnerHTML={{ __html: item.description }}>
 
         </Card.Text>

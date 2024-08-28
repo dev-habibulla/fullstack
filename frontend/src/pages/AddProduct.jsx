@@ -7,22 +7,30 @@ import React, { useState } from "react";
 
 const AddProduct = () => {
   let [description, setDescription] = useState("");
-  let [image, setImage] = useState({});
+  let [image, setImage] = useState([]);
   let [slugText, setSlugText] = useState("");
 
   const onFinish = async (values) => {
     console.log("Success:", values);
 
+   
+    const formData = new FormData();
+
+    formData.append("name", values.product);
+    formData.append("description", description);
+    formData.append("regularprice", values.regularprice);
+    formData.append("saleprice", values.saleprice); // Corrected
+    formData.append("slug", slugText);
+
+    image.forEach((file) => {
+      formData.append("photos", file); // Fixed variable naming
+    });
+
     await axios.post(
       "http://localhost:8000/api/v1/product/createproduct",
-      {
-        name: values.product,
-        description: description,
-        avatar: image,
-        regularprice:values.regularprice,
-        saleprice:values.saleprice,
-        slug:slugText
-      },
+
+      formData,
+
       {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -35,7 +43,8 @@ const AddProduct = () => {
   };
 
   let handleChange = (e) => {
-    setImage(e.target.files[0]);
+    let arr = Array.from(e.target.files);
+    setImage(arr);
   };
 
   return (
@@ -100,7 +109,7 @@ const AddProduct = () => {
             },
           ]}
         >
-          <Input onChange={handleChange} type="file" />
+          <Input onChange={handleChange} type="file" multiple />
         </Form.Item>
 
         <Form.Item
@@ -130,7 +139,11 @@ const AddProduct = () => {
         </Form.Item>
 
         <span>Slug</span>
-        <input style={{width:"100%"}} defaultValue={slugify(slugText)} disabled />
+        <input
+          style={{ width: "100%" }}
+          defaultValue={slugify(slugText)}
+          disabled
+        />
 
         <Form.Item
           wrapperCol={{

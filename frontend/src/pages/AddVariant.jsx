@@ -14,7 +14,7 @@ const AddVariant = () => {
       "http://localhost:8000/api/v1/product/createvariant",
       {
         name: values.name,
-        avatar: image,
+        image: image,
         regularprice: values.regularprice,
         saleprice: values.saleprice,
         productId: produciId,

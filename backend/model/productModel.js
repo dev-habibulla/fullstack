@@ -4,18 +4,18 @@ const { Schema } = mongoose;
 const productSchema = new Schema({
   name: {
     type: String,
-    require: true,
+    // require: true,
     unique: true,
   },
   description: {
     type: String,
   },
-  avatar: {
-    type: String,
+  image: {
+    type: [String],
   },
   regularprice: {
     type: String,
-    require: true
+    // require: true
   },
   saleprice: {
     type: String
