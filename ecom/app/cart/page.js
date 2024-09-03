@@ -61,7 +61,7 @@ const Cart = async () => {
                         <tr>
                             <td>
                                 <Image
-                                    src={`http://localhost:8000${item.productId.image}`}
+                                    src={`http://localhost:8000${item.productId.image[0]}`}
                                     alt="Product Image"
                                     width={50}
                                     height={50}

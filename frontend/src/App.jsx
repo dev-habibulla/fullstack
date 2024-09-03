@@ -18,6 +18,8 @@ import AddProduct from "./pages/AddProduct";
 import ViewProduct from './pages/ViewProduct';
 import AddVariant from "./pages/AddVariant";
 import ViewVariant from "./pages/ViewVariant";
+import AddDiscount from "./pages/AddDiscount";
+import AffiliateProduct from "./pages/AffiliateProduct";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +40,10 @@ const router = createBrowserRouter(
         <Route path="viewproduct" element={<ViewProduct />}></Route>
         <Route path="addvariant" element={<AddVariant />}></Route>
         <Route path="viewvariant" element={<ViewVariant />}></Route>
+
+        <Route path="adddiscount" element={<AddDiscount />}></Route>
+        <Route path="affiliateproduct" element={<AffiliateProduct />}></Route>
+       
       </Route>
     </Route>
   )

@@ -34,9 +34,9 @@ console.log(content);
         <Card.Title>{item.name}</Card.Title>
        
         <Link href={`/product/${item.slug}`}>{JSON.stringify(item.name.split(" ").join("-"))}</Link>
-        <Card.Text dangerouslySetInnerHTML={{ __html: item.description }}>
+        {/* <Card.Text dangerouslySetInnerHTML={{ __html: item.description }}>
 
-        </Card.Text>
+        </Card.Text> */}
         <p>
           {item.saleprice ? (
             <span>

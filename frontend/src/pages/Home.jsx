@@ -52,13 +52,21 @@ const Home = () => {
       getItem("View Subcategore", "/dashboard/viewsubcat"),
       getItem("Add Variant", "/dashboard/addvariant"),
       getItem("View Variant", "/dashboard/viewvariant"),
+     
     ]),
     {
       type: "divider",
     },
     getItem("Discound", "sub5", <SettingOutlined />, [
-      getItem("Add Discound", "13"),
+      getItem("Add Discound", "/dashboard/adddiscount"),
       getItem("View Discound", "14"),
+    ]),
+    {
+      type: "divider",
+    },
+    getItem("Affiliate", "sub6", <SettingOutlined />, [
+      getItem("Product List", "/dashboard/affiliateproduct"),
+      
     ]),
   ];
 
