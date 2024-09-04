@@ -11,6 +11,7 @@ const singleCategoryContoller = require("../../controllers/singleCategory");
 const cartControlar = require("../../controllers/cartController");
 const allCartContoller = require("../../controllers/allcart");
 const cuponControlar = require("../../controllers/cuponControlar");
+const singleProductController = require("../../controllers/singleProductController");
 
 
 const storage = multer.diskStorage({
@@ -42,5 +43,7 @@ _.get("/allsubcat", allSubCatControlar);
 _.get("/allproduct", allProductContoller);
 _.get("/singlecategory", singleCategoryContoller);
 _.get("/allcart", allCartContoller);
+
+_.get("/singleproduct/:slug", singleProductController);
 
 module.exports = _;
