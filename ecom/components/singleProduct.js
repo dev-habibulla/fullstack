@@ -2,6 +2,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link'
+import Container from 'react-bootstrap/Container';
 
 
 const SingleProduct = ({ item }) => {
