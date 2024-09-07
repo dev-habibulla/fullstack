@@ -12,6 +12,7 @@ const cartControlar = require("../../controllers/cartController");
 const allCartContoller = require("../../controllers/allcart");
 const cuponControlar = require("../../controllers/cuponControlar");
 const singleProductController = require("../../controllers/singleProductController");
+const paymentController = require("../../controllers/paymentController");
 
 
 const storage = multer.diskStorage({
@@ -37,6 +38,8 @@ _.post("/createvariant", upload.single("avatar"), createVariantController);
 _.post("/createcart",  cartControlar);
 
 _.post("/createcupon", cuponControlar);
+
+_.post("/payment", paymentController);
 
 _.get("/allcat", allCatControlar);
 _.get("/allsubcat", allSubCatControlar);

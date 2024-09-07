@@ -112,6 +112,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
+import Link from "next/link";
 
 const Cart = () => {
   let [data, setData] = useState([]);
@@ -234,10 +235,18 @@ const Cart = () => {
             <td> {totalPrice}</td>
             <td> {Math.round((totalPrice * 15) / 100)}</td>
             <td> 50</td>
-            <td> {totalPrice + Math.round((totalPrice * 15) / 100) + 50}</td>
+            <td> {totalPrice + Math.round((totalPrice * 15) / 100) + 50}   {localStorage.setItem(
+              "totalprice",
+              JSON.stringify(
+                totalPrice + Math.round((totalPrice * 15) / 100) + 50
+              )
+            )}</td>
+          
           </tr>
         </tbody>
       </Table>
+
+      <Link href="/checkout">Check Out</Link>
     </Container>
   );
 };
