@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Invoice</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+
+<table style="max-width: 600px; width: 100%; margin: 20px auto; background-color: #ffffff; border-collapse: collapse;">
+    <!-- Header -->
+    <tr>
+        <td colspan="4" style="text-align: center; padding: 10px; background-color: #4CAF50; color: white; font-size: 24px;">
+            Your Purchase Invoice
+        </td>
+    </tr>
+
+    <!-- Customer Information -->
+    <tr>
+        <td colspan="2" style="padding: 15px; border-bottom: 1px solid #dddddd;">
+            <strong>Billing Info:</strong><br>
+            {req.body.cus_name}<br>
+            {req.body.cus_add1}<br>
+            {req.body.cus_add2}
+        </td>
+        <td colspan="2" style="padding: 15px; border-bottom: 1px solid #dddddd;">
+            <strong>Order Date:</strong>${currentDate()}<br>
+            <strong>Order No:</strong>   #5444242
+        </td>
+    </tr>
+
+    <!-- Product Information -->
+    <tr>
+        <th style="padding: 15px; background-color: #4CAF50; color: white; border-bottom: 1px solid #dddddd;">Product</th>
+        <th style="padding: 15px; background-color: #4CAF50; color: white; border-bottom: 1px solid #dddddd;">Quantity</th>
+        <th style="padding: 15px; background-color: #4CAF50; color: white; border-bottom: 1px solid #dddddd;">Price</th>
+        <th style="padding: 15px; background-color: #4CAF50; color: white; border-bottom: 1px solid #dddddd;">Total</th>
+    </tr>
+
+    <tr style="background-color: #f9f9f9;">
+        <td style="border: 1px solid #dddddd; padding: 10px;">${item.productId.name}</td>
+        <td style="border: 1px solid #dddddd; padding: 10px;">${item.quantity}</td>
+        <td style="border: 1px solid #dddddd; padding: 10px;">${item.productId.saleprice ?item.productId.saleprice: item.productId.regularprice}</td>
+        <td style="border: 1px solid #dddddd; padding: 10px;">${item.productId.saleprice ?item.productId.saleprice*item.quantity: item.productId.regularprice*item.quantity}</td>
+    </tr>
+   
+
+    <!-- Subtotal, Tax, and Total -->
+    <tr>
+        <td colspan="3" style="padding: 15px; border-bottom: 1px solid #dddddd; font-weight: bold;">Subtotal</td>
+        <td style="padding: 15px; border-bottom: 1px solid #dddddd;">$110.00</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding: 15px; border-bottom: 1px solid #dddddd; font-weight: bold;">Shipping</td>
+        <td style="padding: 15px; border-bottom: 1px solid #dddddd;">$5.00</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding: 15px; border-bottom: 1px solid #dddddd; font-weight: bold;">Tax (15%)</td>
+        <td style="padding: 15px; border-bottom: 1px solid #dddddd;">$17.25</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding: 15px; font-weight: bold;">Total</td>
+        <td style="padding: 15px;">{req.body.amount}</td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td colspan="4" style="text-align: center; padding: 10px; background-color: #4CAF50; color: white; font-size: 12px;">
+            Thank you for your purchase!<br>
+            If you have any questions, feel free to contact us at support@example.com.
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

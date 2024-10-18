@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Invoice</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+  <table align="center" style="max-width: 600px; width: 100%; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <tr>
+      <td style="text-align: center; padding-bottom: 20px; border-bottom: 1px solid #dddddd;">
+        <h1 style="margin: 0; color: #333333;">Your Purchase Invoice</h1>
+        <p>Thank you for shopping with us!</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding: 15px 0;">
+        <p style="margin: 5px 0; color: #555555;"><strong>Invoice Number:</strong> #INV12345</p>
+        <p style="margin: 5px 0; color: #555555;"><strong>Date:</strong> September 25, 2024</p>
+        <p style="margin: 5px 0; color: #555555;"><strong>Customer:</strong> John Doe</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+          <tr>
+            <th style="border: 1px solid #dddddd; padding: 10px; text-align: left; background-color: #f4f4f4; font-weight: bold;">Item</th>
+            <th style="border: 1px solid #dddddd; padding: 10px; text-align: left; background-color: #f4f4f4; font-weight: bold;">Quantity</th>
+            <th style="border: 1px solid #dddddd; padding: 10px; text-align: left; background-color: #f4f4f4; font-weight: bold;">Price</th>
+            <th style="border: 1px solid #dddddd; padding: 10px; text-align: left; background-color: #f4f4f4; font-weight: bold;">Total</th>
+          </tr>
+
+          
+          <tr>
+          
+            <td style="border: 1px solid #dddddd; padding: 10px;">Product 1</td>
+            <td style="border: 1px solid #dddddd; padding: 10px;">1</td>
+            <td style="border: 1px solid #dddddd; padding: 10px;">$50.00</td>
+            <td style="border: 1px solid #dddddd; padding: 10px;">$50.00</td>
+            ${detailsProduct()}
+          </tr>
+         
+        
+          <tr>
+            <td colspan="3" style="border: 1px solid #dddddd; padding: 10px; text-align: right;">Subtotal</td>
+            <td style="border: 1px solid #dddddd; padding: 10px;">$210.00</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border: 1px solid #dddddd; padding: 10px; text-align: right;">Tax (10%)</td>
+            <td style="border: 1px solid #dddddd; padding: 10px;">$21.00</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border: 1px solid #dddddd; padding: 10px; text-align: right;">Shipping</td>
+            <td style="border: 1px solid #dddddd; padding: 10px;">$5.00</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="border: 1px solid #dddddd; padding: 10px; text-align: right;"><strong>Total</strong></td>
+            <td style="border: 1px solid #dddddd; padding: 10px;"><strong>{req.body.amount}</strong></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #dddddd; color: #777777; font-size: 12px;">
+        <p>Thank you for your purchase!</p>
+        <p>If you have any questions, feel free to contact us at support@ecommerce.com.</p>
+        <p>&copy; 2024 eCommerce Inc. All Rights Reserved.</p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

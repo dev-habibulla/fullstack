@@ -7,6 +7,7 @@ const ViewCategory = () => {
   let userInfo = useSelector((state) => state.currentUser.value.id);
 
   let [catList, setCatList] = useState([]);
+  let [realTime, setRealTime] = useState(false);
 
   useEffect(() => {
     async function allData() {
@@ -20,18 +21,36 @@ const ViewCategory = () => {
         arr.push({
           key: item._id,
           name: item.name,
+          stastus:item.stastus,
         });
       });
       setCatList(arr);
     }
     allData();
-  }, []);
+  }, [realTime]);
+
+
+  let handleApproved= async(item)=>{
+    
+  let data=   await axios.post(`http://localhost:8000/api/v1/product/updatecategory/${item.key}?stastus=${item.stastus}`)
+
+    console.log(data);
+    setRealTime(!realTime)
+
+  }
+
 
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Stastus",
+      dataIndex: "stastus",
+      key: "stastus",
       render: (text) => <a>{text}</a>,
     },
 
@@ -42,7 +61,9 @@ const ViewCategory = () => {
       render: (_, record) => (
         <Space size="middle">
         
-          <a>Delete {record.name}</a>
+          <button onClick={()=>handleApproved(record)}>{record.stastus=="waiting"?"Approve":"Pending"} {record.name}</button>
+        
+          <button>Delete {record.name}</button>
         </Space>
       ),
     },

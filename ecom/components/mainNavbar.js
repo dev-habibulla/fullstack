@@ -9,7 +9,7 @@ const MainNavbar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
     <Container>
-      <Navbar.Brand href="#home">Ecom</Navbar.Brand>
+      <Navbar.Brand href="/">Ecom</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">

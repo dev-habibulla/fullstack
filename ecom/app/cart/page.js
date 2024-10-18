@@ -175,6 +175,7 @@ const Cart = () => {
             <th>Quantity</th>
             <th>Unit Price</th>
             <th>Total</th>
+            <th>Total With 15% Tax</th>
           </tr>
         </thead>
         <tbody>
@@ -216,11 +217,21 @@ const Cart = () => {
                   ? item.productId.saleprice * item.quantity
                   : item.productId.regularprice * item.quantity}
               </td>
+
+              <td> {totalPrice + Math.round((totalPrice * 15) / 100) + 50}   {localStorage.setItem(
+              "totalprice",
+              JSON.stringify(
+                totalPrice + Math.round((totalPrice * 15) / 100) + 50
+              )
+            )}</td>
+
             </tr>
           ))}
         </tbody>
       </Table>
-      <Table striped bordered hover>
+
+
+      {/* <Table striped bordered hover>
         <thead>
           <tr>
             <th>Price</th>
@@ -244,7 +255,7 @@ const Cart = () => {
           
           </tr>
         </tbody>
-      </Table>
+      </Table> */}
 
       <Link href="/checkout">Check Out</Link>
     </Container>
