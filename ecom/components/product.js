@@ -7,7 +7,7 @@ import SingleProduct from './singleProduct';
 async function getData() {
   const res = await fetch('http://localhost:8000/api/v1/product/allproduct')
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
+  
     throw new Error('Failed to fetch data')
   }
 
@@ -15,38 +15,27 @@ async function getData() {
 }
 const Product = async () => {
   const data = await getData()
+
+  let arr=[]
+  data.map(item=>{
+    item.stastus!="waiting" &&
+    arr.push(item)
+  })
+
+
   return (
 
-    // <ul>
-    //   {data.map(item => (
-    //     <li key={item.id}>
-    //       <Image
-    //         src={`http://localhost:8000${item.avatar}`}
-    //         alt="Product Image"
-    //         width={50}
-    //         height={50}
-    //       />
-    //       <span>{item.name}</span>
-    //       <div>
-    //         {item.saleprice ? (
-    //           <span>
-    //             <del>{item.regularprice}</del> <span>{item.saleprice}</span>
-    //           </span>
-    //         ) : (
-    //           <span>{item.regularprice}</span>
-    //         )}
-    //       </div>
-    //     </li>
-    //   ))}
-    // </ul>
     <Container>
       <Row className="justify-content-md-center">
 
-        {data.map(item => (
-          <Col xs lg="3">
-            <SingleProduct item={item} />
+      
+
+{arr.length >0? arr.map((item,i)=>(
+  item.stastus!="waiting" &&
+  <Col xs lg="3">
+            <SingleProduct key={i} item={item} />
           </Col>
-        ))}
+)):<h1>No Product Found</h1>}
 
 
       </Row>

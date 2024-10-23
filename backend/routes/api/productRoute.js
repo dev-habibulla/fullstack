@@ -14,6 +14,8 @@ const cuponControlar = require("../../controllers/cuponControlar");
 const singleProductController = require("../../controllers/singleProductController");
 const paymentController = require("../../controllers/paymentController");
 const updateCategoryController = require("../../controllers/updateCategoryController");
+const updateProductController = require("../../controllers/updateProductController");
+const searchController = require("../../controllers/searchController");
 
 
 const storage = multer.diskStorage({
@@ -37,7 +39,10 @@ _.post("/createsubcategory", createSubCategoryControlar);
 _.post("/updatecategory/:id", updateCategoryController);
 
 
+
 _.post("/createproduct", upload.array('photos', 12), createProductController);
+
+_.post("/updateproduct/:id", updateProductController);
 // _.post("/createproduct", upload.single("avatar"), createProductController);
 _.post("/createvariant", upload.single("avatar"), createVariantController);
 _.post("/createcart",  cartControlar);
@@ -47,6 +52,8 @@ _.post("/createcupon", cuponControlar);
 _.post("/payment", paymentController);
 
 _.post("/orderlist", paymentController);
+
+_.get("/search/:slug", searchController);
 
 
 

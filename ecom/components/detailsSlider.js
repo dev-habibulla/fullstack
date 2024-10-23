@@ -14,11 +14,14 @@ const DetailsSlider = ({ image }) => {
     setNav1(sliderRef1);
     setNav2(sliderRef2);
   }, []);
+  console.log(image)
 
   return (
     <div className="slider-container">
       <Slider asNavFor={nav2} ref={(slider) => (sliderRef1 = slider)}>
         {image.map((item) => (
+         
+          
           <>
             <div
               style={{ position: "relative", width: "100%", height: "500px" }}

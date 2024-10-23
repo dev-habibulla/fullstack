@@ -13,8 +13,6 @@ const ViewCategory = () => {
     async function allData() {
       let data = await axios.get("http://localhost:8000/api/v1/product/allcat");
 
-      console.log("all cat", data.data);
-
       let arr = [];
 
       data.data.map((item) => {

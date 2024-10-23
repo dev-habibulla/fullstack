@@ -21,8 +21,16 @@ const singleProduct = async ({ params }) => {
       {
       data.map((item) => (
         <>
-          <h1>{item.name}</h1>
+          <h1>{item.name}</h1> 
           <DetailsSlider image={item.image}/>
+          <div dangerouslySetInnerHTML={{ __html: item.description }} />
+          <p>
+          {item.saleprice ? (
+            <span>
+              <del>{item.regularprice}</del> {item.saleprice}
+            </span>
+          ) : (item.regularprice)}
+        </p>
         </>
       ))
       }

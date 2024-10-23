@@ -4,6 +4,7 @@ import axios from "axios";
 
 const ViewProduct = () => {
   let [productList, setProductList] = useState([]);
+  let [realTime, setRealTime] = useState(false);
 
   useEffect(() => {
     async function allData() {
@@ -22,12 +23,26 @@ const ViewProduct = () => {
           regularprice: item.regularprice,
           saleprice: item.saleprice,
           image: item.image,
+          stastus: item.stastus,
         });
       });
       setProductList(arr);
     }
     allData();
-  }, []);
+  }, [realTime]);
+
+
+  let handleApproved= async(item)=>{
+    
+    let data=   await axios.post(`http://localhost:8000/api/v1/product/updateproduct/${item.key}?stastus=${item.stastus}`)
+  
+      console.log(data);
+      setRealTime(!realTime)
+  
+    }
+
+
+
 
   const columns = [
     {
@@ -55,18 +70,27 @@ const ViewProduct = () => {
     {
       title: "Regular Price",
       dataIndex: "regularprice",
+
       key: "regularprice",
     },
     {
       title: "Sale price",
       key: "saleprice",
+      dataIndex: "saleprice",
+    },
+    {
+      title: "Stastus",
+      key: "stastus",
+      dataIndex: "stastus",
     },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <a>Delete</a>
+          <button onClick={()=>handleApproved(record)}>{record.stastus=="waiting"?"Approve":"Pending"}</button>
+        
+        <button>Delete </button>
         </Space>
       ),
     },

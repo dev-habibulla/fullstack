@@ -23,6 +23,12 @@ const productSchema = new Schema({
   slug: {
     type: String
   },
+  stastus: {
+    type: String,
+    enum: ["waiting", "rejected", "approved"],
+    default: "waiting",
+},
+
 });
 
 module.exports = mongoose.model("Product", productSchema);
